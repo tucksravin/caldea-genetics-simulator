@@ -43,10 +43,29 @@ public class Caldean{
   private int age;
   private boolean eld;
   private boolean sex;
+  private boolean firstChild;
+  private boolean secondChild;
   private House family;
   private Caldean spouse;
   private Genome myGenes;
 
 
+public Caldean(Caldean eld, Caldean du)
+{
+  Random fate = new Random();
+  age = 0;
+  firstChild=false;
+  secondChild=false;
+  family = eld.getHouse();
+  sex = fate.nextBoolean();
+  myGenes = eld.mixGametes();
+  
+}
+
+//returns house
+public House getHouse()
+{
+  return family;
+}
 
 }
