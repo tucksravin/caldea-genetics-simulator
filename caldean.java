@@ -77,7 +77,25 @@ public Caldean(int a, boolean e, boolean s, House fam, Genome mG)
   myGenes = mG;
 }
 
-//returns house
+//mix genes with spouse
+public LinkedList<Gene> mixGametes()
+{
+  LinkedList<Gene> united = new LinkedList<Gene>();
+  LinkedList<Gene> eldGenome = eld.getGenome();
+  LinkedList<Gene> duGenome = du.getGenome();
+
+  Iterator eldGamete = new eld.iterator();
+  Iterator duGamete = new du.iterator();
+
+  while(eldGamete.hasNext())
+    {
+      Gene curr = eldGamete.next();
+      united.add(new Gene(curr.gamete(),duGamete.next().gamtete(), curr.getFitHet(), curr.getFitHomOne(), curr.getFitHomTwo()));
+    }
+
+
+}
+
 public House getHouse()
 {
   return family;
@@ -88,10 +106,10 @@ public boolean firstKid()
   return firstChild;
 }
 
-//mix genes with spouse
-public Genome mixGametes()
+public LinkedList<Gene> getGenome()
 {
-
+  return myGenes;
 }
+
 
 }

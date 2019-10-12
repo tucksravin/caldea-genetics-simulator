@@ -1,3 +1,4 @@
+
 /*
 A gene represents a point in the genome that can have either an effect on
 fitness in the population, or just exist.
@@ -6,6 +7,8 @@ Fitness of heterozygote
 Fitness of homozygote One
 Fitness of homozygote Two
 */
+
+import java.util.Random;
 
 public class Gene
 {
@@ -35,4 +38,29 @@ public Gene(boolean one, boolean two, int het, int homOne, int homTwo)
     fitHomOne = homOne;
     fitHowTwo = homTwo;
   }
+
+public int getFitHet()
+{
+  return fitHet;
+}
+
+public int getFitHomOne()
+{
+  return fitHomOne;
+}
+
+public int getFitHomTwo()
+{
+  return fitHomTwo;
+}
+
+public boolean gamete()
+{
+  Random fate = new Random();
+
+  if(fate.nextBoolean())
+    return alleleOne;
+  else
+    return alleleTwo;
+}
 }
