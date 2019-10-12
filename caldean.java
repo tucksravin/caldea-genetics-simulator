@@ -43,8 +43,8 @@ public class Caldean{
   private int age;
   private boolean elder;
   private boolean sex;
-  private boolean firstChild;
-  private boolean secondChild;
+  private boolean oneChild;
+  private boolean twoChild;
   private House family;
   private Caldean spouse;
   private LinkedList<Gene> myGenes;
@@ -60,6 +60,10 @@ public Caldean(Caldean eld, Caldean du)
   family = eld.getHouse();
   sex = fate.nextBoolean();
   myGenes = eld.mixGametes();
+  if(eld.firstKid())
+    oneChild = false;
+  else
+    oneChild = true;
 }
 
 //artificial Caldean
@@ -77,6 +81,11 @@ public Caldean(int a, boolean e, boolean s, House fam, Genome mG)
 public House getHouse()
 {
   return family;
+}
+
+public boolean firstKid()
+{
+  return firstChild;
 }
 
 //mix genes with spouse
