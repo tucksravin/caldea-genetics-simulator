@@ -14,6 +14,17 @@ private Caldean du;
 
 public House()
 {
+
+}
+
+//gives current rank
+public int getRank()
+{
+
+}
+
+public int getInitialRank()
+{
   
 }
 }

@@ -101,6 +101,11 @@ public House getHouse()
   return family;
 }
 
+public int getRank()
+  {
+    family.getRank();
+  }
+
 public boolean firstKid()
 {
   return firstChild;
@@ -111,5 +116,9 @@ public LinkedList<Gene> getGenome()
   return myGenes;
 }
 
+public String toString()
+{
+
+}
 
 }
