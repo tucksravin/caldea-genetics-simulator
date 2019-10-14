@@ -42,7 +42,7 @@ public class Caldean{
 
   private int age;
   private boolean elder;
-  private boolean sex;
+  private boolean female;
   private boolean oneChild;
   private boolean twoChild;
   private House family;
@@ -58,12 +58,12 @@ public Caldean(Caldean eld, Caldean du)
   firstChild=false;
   secondChild=false;
   family = eld.getHouse();
-  sex = fate.nextBoolean();
+  female = fate.nextBoolean();
   myGenes = eld.mixGametes();
   if(eld.firstKid())
-    oneChild = false;
+    elder = false;
   else
-    oneChild = true;
+    elder = true;
 }
 
 //artificial Caldean
@@ -72,7 +72,7 @@ public Caldean(int a, boolean e, boolean s, House fam, Genome mG)
   fate = new Random();
   age = a;
   elder = e;
-  sex = s;
+  female = s;
   family = fam;
   myGenes = mG;
 }
@@ -118,7 +118,36 @@ public LinkedList<Gene> getGenome()
 
 public String toString()
 {
+  String output = new String();
+  output = output + "This is the ";
 
+  if(elder)
+    if(spouse==null)
+      output = output + "eld";
+    else
+      output = output + "rex";
+  else
+    if(spouse==null)
+      output=output + "du";
+    else
+      output=output + "is";
+
+
+  if(female)
+    output = output + "a ";
+  else
+    output = output +"is ";
+
+  output = output + "of House " + getRank() + " risen from "+ family.getInitialRank();
+  output = output + ". Their genome is as follows: %n"
+
+  Iterator<Gene> genome = myGenes.iterator();
+  while(genome.hasNext())
+  {
+    int i = 1;
+    output = output + "Gene "+ i + "%n" + genome.next().toString() +"%n %n";
+    i++;
+  }
 }
 
 }
