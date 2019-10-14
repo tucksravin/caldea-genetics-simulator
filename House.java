@@ -11,20 +11,29 @@ private Caldean rex;
 private Caldean is;
 private Caldean eld;
 private Caldean du;
+private Population theHousesOfCaldea;
 
-public House()
+public House(Population soFar)
 {
-
+  theHousesOfCaldea = soFar;
+  rankInit = soFar.size()+1;
+  LinkedList<Caldean> theFolks = generateFamily();
+  Iterator<Caldean> senior = theFolks.iterator();
+  rex = senior.next();
+  is = senior.next();
+  eld = senior.next();
+  du = senior.next();
+  soFar.add(this);
 }
 
 //gives current rank
 public int getRank()
 {
-
+  return theHousesOfCaldea.indexOf(this);
 }
 
 public int getInitialRank()
 {
-  
+  return rankInit;
 }
 }

@@ -15,7 +15,12 @@ public void nextYear()
 
 public Population()
 {
-  
+
+}
+
+public int howManyHouses()
+{
+  return housesOfCaldea.size();
 }
 
 }
