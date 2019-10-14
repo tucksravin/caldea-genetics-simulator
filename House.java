@@ -43,4 +43,9 @@ public int getInitialRank()
 {
   return rankInit;
 }
+
+public LinkedList<Caldean> generateFamily()
+{
+  
+}
 }

@@ -21,6 +21,11 @@ public class Locus
     b=second;
   }
 
+  public Gene getGene()
+  {
+    return g;
+  }
+
   public int genotype()
     {
       if(a&&b)

@@ -5,8 +5,8 @@ A Population contains a list of houses and has methods that cycle
 through the years and and can return statistics about different alleles.
 */
 
-public class Population{
-private LinkedList<House> housesOfCaldea;
+public class Population extends LinkedList<House>{
+
 private int year;
 
 public void nextYear()
@@ -20,9 +20,7 @@ public Population()
 
 }
 
-public int howManyHouses()
-{
-  return housesOfCaldea.size();
-}
+
+
 
 }

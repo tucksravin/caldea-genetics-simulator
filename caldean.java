@@ -42,8 +42,8 @@ public class Caldean{
   private int age;
   private boolean elder;
   private boolean female;
-  private boolean oneChild;
-  private boolean twoChild;
+  private boolean firstChild;
+  private boolean secondChild;
   private House family;
   private Caldean spouse;
   private LinkedList<Locus> myGenes;
@@ -76,19 +76,18 @@ public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG)
 }
 
 //mix genes with spouse
-public LinkedList<Gene> mixGametes()
+public LinkedList<Locus> mixGametes()
 {
   LinkedList<Locus> united = new LinkedList<Locus>();
-  LinkedList<Locus> eldGenome = eld.getGenome();
-  LinkedList<Locus> duGenome = du.getGenome();
+  LinkedList<Locus> is = spouse.getGenome();
 
-  Iterator<Locus> eldGamete = new eld.iterator();
-  Iterator<Locus> duGamete = new du.iterator();
+  Iterator<Locus> rexStrand = new myGenes.iterator();
+  Iterator<Locus> isStrand = new is.iterator();
 
-  while(eldGamete.hasNext())
+  while(rexStrand.hasNext())
     {
-      Gene curr = eldGamete.next();
-      united.add(new Gene(curr.gamete(),duGamete.next().gamtete(), curr.getFitHet(), curr.getFitHomOne(), curr.getFitHomTwo()));
+      Locus curr = rexStrand.next();
+      united.add(new Locus(curr.getGene(), curr.gamete(), isStrand.next().gamete()));
     }
 
 
@@ -109,7 +108,7 @@ public boolean firstKid()
   return firstChild;
 }
 
-public LinkedList<Gene> getGenome()
+public LinkedList<Locus> getGenome()
 {
   return myGenes;
 }
