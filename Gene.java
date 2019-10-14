@@ -28,7 +28,7 @@ private int fitHomTwo;
 
 //constructs gene when given all variables
 //(the macrocreation of a Gene is done in the population constructor)
-public Gene( int homOne, int homTwo, int het, int originalRarity)
+public Gene( int homOne, int het, int homTwo, int originalRarity)
   {
     fitHet = het;
     fitHomOne = homOne;
@@ -51,13 +51,13 @@ public int fitness(int g)
 public String toString()
 {
   String output = new String("Original frequency of the rare allele was ");
-  output = output + originalRarity + " percent."
+  output = output + originalRarity + " percent. ";
 
-    output = output + "Homozygous WT fitness is " + fitHomOne + "percent. ";
+    output = output + "Homozygous WT fitness is " + fitHomOne + " percent. ";
 
-    output = output + "Homozygous rare fitness is " + fitHomTwo + "percent. ";
+    output = output + "Homozygous rare fitness is " + fitHomTwo + " percent. ";
 
-    output = output + "Heterozygous fitness is " + fitHet + "percent. ";
+    output = output + "Heterozygous fitness is " + fitHet + " percent. ";
 
     return output;
 

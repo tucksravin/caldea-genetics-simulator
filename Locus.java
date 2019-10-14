@@ -60,7 +60,7 @@ public class Locus
     else
       output = output + "a heterozygote. ";
 
-    int f=g.fitness();
+    int f=g.fitness(gt);
 
     if(f==100)
       output = output + "This has no signicant fitness effect. \n";
