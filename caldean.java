@@ -1,5 +1,4 @@
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 /*
 A caldean object represents an individual caldean living at the time of the simulator.
@@ -138,7 +137,7 @@ public String toString()
     output = output +"is ";
 
   output = output + "of House " + getRank() + " risen from "+ family.getInitialRank();
-  output = output + ". Their genome is as follows: %n"
+  output = output + ". Their genome is as follows: %n";
 
   Iterator<Locus> genome = myGenes.iterator();
   while(genome.hasNext())

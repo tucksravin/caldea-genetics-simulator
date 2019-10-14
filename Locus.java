@@ -1,4 +1,4 @@
-import java.util.Random;
+import java.util.*;
 
 /*
 The locus class simply stores two booleans and the Gene that it is a representative of.

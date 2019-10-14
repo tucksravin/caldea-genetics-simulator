@@ -1,3 +1,4 @@
+import java.util.*;
 
 /*
 A gene represents a point in the genome that can have either an effect on
