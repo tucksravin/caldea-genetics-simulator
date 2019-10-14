@@ -47,7 +47,7 @@ public class Caldean{
   private boolean twoChild;
   private House family;
   private Caldean spouse;
-  private LinkedList<Gene> myGenes;
+  private LinkedList<Locus> myGenes;
   private Random fate;
 
 //natural Caldean
@@ -67,12 +67,11 @@ public Caldean(Caldean eld, Caldean du)
 }
 
 //artificial Caldean
-public Caldean(int a, boolean e, boolean s, House fam, Genome mG)
+public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG)
 {
-  fate = new Random();
   age = a;
   elder = e;
-  female = s;
+  female = f;
   family = fam;
   myGenes = mG;
 }
@@ -80,12 +79,12 @@ public Caldean(int a, boolean e, boolean s, House fam, Genome mG)
 //mix genes with spouse
 public LinkedList<Gene> mixGametes()
 {
-  LinkedList<Gene> united = new LinkedList<Gene>();
-  LinkedList<Gene> eldGenome = eld.getGenome();
-  LinkedList<Gene> duGenome = du.getGenome();
+  LinkedList<Locus> united = new LinkedList<Locus>();
+  LinkedList<Locus> eldGenome = eld.getGenome();
+  LinkedList<Locus> duGenome = du.getGenome();
 
-  Iterator eldGamete = new eld.iterator();
-  Iterator duGamete = new du.iterator();
+  Iterator<Locus> eldGamete = new eld.iterator();
+  Iterator<Locus> duGamete = new du.iterator();
 
   while(eldGamete.hasNext())
     {
@@ -141,7 +140,7 @@ public String toString()
   output = output + "of House " + getRank() + " risen from "+ family.getInitialRank();
   output = output + ". Their genome is as follows: %n"
 
-  Iterator<Gene> genome = myGenes.iterator();
+  Iterator<Locus> genome = myGenes.iterator();
   while(genome.hasNext())
   {
     int i = 1;

@@ -26,6 +26,11 @@ public House(Population soFar)
   soFar.add(this);
 }
 
+public House()
+{
+  //blank house;
+}
+
 //gives current rank
 public int getRank()
 {
