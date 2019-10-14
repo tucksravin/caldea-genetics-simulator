@@ -104,9 +104,16 @@ public String toString()
     else
       output = output + "advantage of ";
 
-    output = output + Math.abs(100-f) + " points. %n"
+    output = output + Math.abs(100-f) + " percent. %n"
   }
 
+  if(g!=1)
+    output = output + "Homozygous WT fitness is " + fitHomOne + "percent. "
 
+  if(g!=2)
+    output = output + "Homozygous rare fitness is " + fitHomTwo + "percent. "
+
+  if(g!=3)
+    output = output + "Heterozygous fitness is " + fitHet + "percent. "
 }
 }
