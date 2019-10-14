@@ -13,11 +13,6 @@ import java.util.Random;
 public class Gene
 {
 
-//Mendelian genetics, with only two alleles.
-//False is the rarer allele, true is WT.
-private boolean alleleOne;
-private boolean alleleTwo;
-
 //original frequency of the rarer allele
 private int originalRarity;
 
@@ -33,30 +28,18 @@ private int fitHomTwo;
 
 //constructs gene when given all variables
 //(the macrocreation of a Gene is done in the population constructor)
-public Gene(boolean one, boolean two, int homOne, int homTwo, int het)
+public Gene( int homOne, int homTwo, int het, int originalRarity)
   {
-    alleleOne = one;
-    alleleTwo = two;
     fitHet = het;
     fitHomOne = homOne;
     fitHomTwo = homTwo;
   }
 
-public int genotype()
-  {
-    if(alleleOne&&alleleTwo)
-      return 1;
 
-    else if(!(alleleOne||alleleTwo))
-      return 2;
 
-    else
-      return 3;
-  }
-
-public int fitness()
+public int fitness(int g)
 {
-  int g = genotype();
+
   if(g==1)
     return fitHomOne;
   if(g==2)
@@ -65,57 +48,20 @@ public int fitness()
     return fitHet;
 }
 
-public boolean gamete()
-{
-  Random fate = new Random();
-
-  if(fate.nextBoolean())
-    return alleleOne;
-  else
-    return alleleTwo;
-}
-
 public String toString()
 {
-  int g = genotype();
-  String output = new String("This individual is ");
+  String output = new String("Original frequency of the rare allele was ");
+  output = output + originalRarity + " percent."
 
-  if(g==1||g==2)
-  {
-    output = output+ "homozygous for the ";
-    if(g==1)
-      output = output + "wildtype allele. ";
-    else
-      output = output + "rare allele. ";
-  }
-  else
-    output = output + "a heterozygote. ";
-
-  int f=fitness();
-
-  if(f==100)
-    output = output + "This has no signicant fitness effect. \n";
-  else
-  {
-    output = output + "This gives a fitness ";
-
-    if(f<100)
-      output = output + "disadvantage of ";
-    else
-      output = output + "advantage of ";
-
-    output = output + Math.abs(100-f) + " percent. \n";
-  }
-
-  if(g!=1)
     output = output + "Homozygous WT fitness is " + fitHomOne + "percent. ";
 
-  if(g!=2)
     output = output + "Homozygous rare fitness is " + fitHomTwo + "percent. ";
 
-  if(g!=3)
     output = output + "Heterozygous fitness is " + fitHet + "percent. ";
 
     return output;
+
 }
+
+
 }
