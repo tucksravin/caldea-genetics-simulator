@@ -33,13 +33,13 @@ private int fitHomTwo;
 
 //constructs gene when given all variables
 //(the macrocreation of a Gene is done in the population constructor)
-public Gene(boolean one, boolean two, int het, int homOne, int homTwo)
+public Gene(boolean one, boolean two, int homOne, int homTwo, int het)
   {
     alleleOne = one;
     alleleTwo = two;
     fitHet = het;
     fitHomOne = homOne;
-    fitHowTwo = homTwo;
+    fitHomTwo = homTwo;
   }
 
 public int genotype()
@@ -94,7 +94,7 @@ public String toString()
   int f=fitness();
 
   if(f==100)
-    output = output + "This has no signicant fitness effect. %n";
+    output = output + "This has no signicant fitness effect. \n";
   else
   {
     output = output + "This gives a fitness ";
@@ -104,16 +104,18 @@ public String toString()
     else
       output = output + "advantage of ";
 
-    output = output + Math.abs(100-f) + " percent. %n"
+    output = output + Math.abs(100-f) + " percent. \n";
   }
 
   if(g!=1)
-    output = output + "Homozygous WT fitness is " + fitHomOne + "percent. "
+    output = output + "Homozygous WT fitness is " + fitHomOne + "percent. ";
 
   if(g!=2)
-    output = output + "Homozygous rare fitness is " + fitHomTwo + "percent. "
+    output = output + "Homozygous rare fitness is " + fitHomTwo + "percent. ";
 
   if(g!=3)
-    output = output + "Heterozygous fitness is " + fitHet + "percent. "
+    output = output + "Heterozygous fitness is " + fitHet + "percent. ";
+
+    return output;
 }
 }
