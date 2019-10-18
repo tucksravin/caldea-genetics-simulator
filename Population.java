@@ -16,8 +16,9 @@ public void nextYear()
 }
 
 public Population()
-{
-
+{  
+  super();
+  year = 0;
 }
 
 

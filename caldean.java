@@ -134,13 +134,13 @@ public String toString()
     output = output +"is ";
 
   output = output + "of House " + getRank() + " risen from "+ family.getInitialRank();
-  output = output + ". Their genome is as follows: %n";
+  output = output + ". Their genome is as follows: \n";
 
   Iterator<Locus> genome = myGenes.iterator();
   while(genome.hasNext())
   {
     int i = 1;
-    output = output + "Gene "+ i + "%n" + genome.next().toString() +"%n %n";
+    output = output + "Gene "+ i + "%n" + genome.next().toString() +"\n \n";
     i++;
   }
 

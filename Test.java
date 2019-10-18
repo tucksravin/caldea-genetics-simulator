@@ -29,7 +29,9 @@ class Test
       ColisGenes.add(three);
       ColisGenes.add(four);
 
-      House San = new House();
+      Population theCity = new Population();
+
+      House San = new House(1, theCity);
 
       Caldean Darin = new Caldean(25, true, false, San, DarinsGenes);
 
@@ -43,5 +45,6 @@ class Test
       System.out.println("\n" + three.toString());
       System.out.println("\n" + four.toString());
       System.out.println("\n" + hidden.toString());
+      System.out.println("\n" + Darin.toString());
   }
 }

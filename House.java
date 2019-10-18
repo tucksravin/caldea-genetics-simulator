@@ -28,9 +28,11 @@ public House(Population soFar)
   soFar.add(this);
 }
 
-public House()
+//artificial house
+public House(int rI, Population houses)
 {
-  //blank house;
+  theHousesOfCaldea = houses;
+  rankInit=rI;
 }
 
 //gives current rank
