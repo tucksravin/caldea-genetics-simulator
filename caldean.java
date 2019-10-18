@@ -68,7 +68,23 @@ public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG)
   myGenes = mG;
 }
 
-//mix genes with spouse
+//advances year, checks if the caldean will die, will get married, or have children
+//which are the things that this simulation cares about
+public void anotherYear()
+{
+  age++;
+
+  if(lonely())
+    marriage(); 
+
+  if(spouse!=null && horny())
+    baby();
+
+  if(mortality())
+    die();
+}
+
+//mix genes with spouse and presents a new genome
 public LinkedList<Locus> mixGametes()
 {
   LinkedList<Locus> united = new LinkedList<Locus>();
@@ -86,21 +102,7 @@ public LinkedList<Locus> mixGametes()
   return united;
 }
 
-//advances year, checks if the caldean will die, will get married, or have children
-//which are the things that this simulation cares about
-public void anotherYear()
-{
-  age++;
 
-  if(mortality())
-    die();
-
-  if(lonely())
-    marriage();
-
-  if(spouse!=null && horny())
-    baby();
-}
 
 public House getHouse()
 {
