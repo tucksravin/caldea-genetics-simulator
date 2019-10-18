@@ -32,13 +32,14 @@ public House(Population soFar)
 public House(int rI, Population houses)
 {
   theHousesOfCaldea = houses;
+  theHousesOfCaldea.add(this);
   rankInit=rI;
 }
 
 //gives current rank
 public int getRank()
 {
-  return theHousesOfCaldea.indexOf(this);
+  return theHousesOfCaldea.indexOf(this)+1;
 }
 
 public int getInitialRank()

@@ -37,6 +37,7 @@ class Test
 
       Caldean Colis =  new Caldean(23, false, true, San, ColisGenes);
 
+      Darin.arrangedMarriage(Colis);
 
 
 
