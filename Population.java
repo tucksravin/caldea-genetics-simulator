@@ -32,17 +32,44 @@ public Population()
 {
   super();
   year = 0;
-  lifeTables();
 }
 
-//manually adding all 100 points the data from Kantrow 89
-public void lifeTables()
+//manually adding all data from Kantrow 89, chance of surviving in a given year
+public double lifeTables(boolean female,int age)
 {
-  //male table
+  if(female)
+  {
 
-  mLifeTable[0]=1000;
+  }
+  else
+    {
+      if(age==1)
+        return 846;
+      else if(age<5)
+        return 980;
+      else if(age<10)
+        return 994;
+      else if(age<20)
+        return 995;
+      else if(age<30)
+        return 994;
+        //30-49 has a very similar mortality rate
+      else if(age<50)
+        return 986;
+      else if(age<60)
+        return 983;
+      else if(age<70)
+        return 962;
+      else if(age<80)
+        return 925;
+      else if(age<90)
+        return 829;
+        //nobody makes it past ninety, sorry :/
+      else
+        return 0;
 
 
+    }
 }
 
 
