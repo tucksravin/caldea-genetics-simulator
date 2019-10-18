@@ -46,6 +46,14 @@ public int getInitialRank()
 
 public LinkedList<Caldean> generateFamily()
 {
-  
+  LinkedList<Caldean> fam = new LinkedList<Caldean>();
+  fam.add(rex);
+  fam.add(is);
+  fam.add(eld);
+  fam.add(du);
+  return fam;
 }
+
+
+
 }

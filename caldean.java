@@ -59,10 +59,7 @@ public Caldean(Caldean eld, Caldean du)
   family = eld.getHouse();
   female = fate.nextBoolean();
   myGenes = eld.mixGametes();
-  if(eld.firstKid())
-    elder = false;
-  else
-    elder = true;
+  elder = !eld.firstKid();
 }
 
 //artificial Caldean
@@ -81,8 +78,8 @@ public LinkedList<Locus> mixGametes()
   LinkedList<Locus> united = new LinkedList<Locus>();
   LinkedList<Locus> is = spouse.getGenome();
 
-  Iterator<Locus> rexStrand = new myGenes.iterator();
-  Iterator<Locus> isStrand = new is.iterator();
+  Iterator<Locus> rexStrand = myGenes.iterator();
+  Iterator<Locus> isStrand = is.iterator();
 
   while(rexStrand.hasNext())
     {
@@ -90,6 +87,7 @@ public LinkedList<Locus> mixGametes()
       united.add(new Locus(curr.getGene(), curr.gamete(), isStrand.next().gamete()));
     }
 
+  return united;
 
 }
 
@@ -100,7 +98,7 @@ public House getHouse()
 
 public int getRank()
   {
-    family.getRank();
+    return family.getRank();
   }
 
 public boolean firstKid()
@@ -145,6 +143,8 @@ public String toString()
     output = output + "Gene "+ i + "%n" + genome.next().toString() +"%n %n";
     i++;
   }
+
+  return output;
 }
 
 }
