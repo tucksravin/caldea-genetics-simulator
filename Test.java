@@ -9,9 +9,9 @@ class Test
 
   public static void main(String[] args)
   {
-      Gene hidden = new Gene (100, 110, 50, 30);
+      Gene hidden = new Gene (1000, 1100, 500, 30);
 
-      Gene uninteresting =  new Gene(100,100,100, 10);
+      Gene uninteresting =  new Gene(1000,1000,1000, 10);
 
       Locus one = new Locus(hidden, true, true);
 

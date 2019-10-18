@@ -36,6 +36,11 @@ public House(int rI, Population houses)
   rankInit=rI;
 }
 
+public boolean hasEld()
+{
+  return eld!=null;
+}
+
 //gives current rank
 public int getRank()
 {

@@ -17,6 +17,8 @@ public class Gene
 //original frequency of the rarer allele
 private int originalRarity;
 
+//Fitness is out of 1000
+
 //Fitness of heterozygote (gtype 3)
 private int fitHet;
 

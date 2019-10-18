@@ -42,24 +42,20 @@ public class Caldean{
   private int age;
   private boolean elder;
   private boolean female;
-  private boolean firstChild;
-  private boolean secondChild;
   private House family;
   private Caldean spouse;
   private LinkedList<Locus> myGenes;
   private Random fate;
 
 //natural Caldean
-public Caldean(Caldean eld, Caldean du)
+public Caldean(Caldean rex, Caldean is)
 {
   fate = new Random();
   age = 0;
-  firstChild=false;
-  secondChild=false;
-  family = eld.getHouse();
+  family = rex.getHouse();
   female = fate.nextBoolean();
-  myGenes = eld.mixGametes();
-  elder = !eld.firstKid();
+  myGenes = rex.mixGametes();
+  elder = !family.hasEld();
 }
 
 //artificial Caldean
@@ -88,7 +84,22 @@ public LinkedList<Locus> mixGametes()
     }
 
   return united;
+}
 
+//advances year, checks if the caldean will die, will get married, or have children
+//which are the things that this simulation cares about
+public void anotherYear()
+{
+  age++;
+
+  if(mortality())
+    die();
+
+  if(lonely())
+    marriage();
+
+  if(spouse!=null && horny())
+    baby();
 }
 
 public House getHouse()
@@ -101,10 +112,6 @@ public int getRank()
     return family.getRank();
   }
 
-public boolean firstKid()
-{
-  return firstChild;
-}
 
 public LinkedList<Locus> getGenome()
 {
@@ -117,6 +124,10 @@ public void arrangedMarriage(Caldean betrothed)
   spouse = betrothed;
 }
 
+
+
+
+//outputs a string that describes who this caldean is and accesses their genome
 public String toString()
 {
   String output = new String();
