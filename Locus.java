@@ -78,7 +78,7 @@ public class Locus
       else
         output = output + "advantage of ";
 
-      output = output + Math.abs(1000-f)/(double)10 + " percent. \n";
+      output = output + Math.abs(100-f) + " percent. \n";
     }
 
       return output;

@@ -24,11 +24,15 @@ returns caldeans spouse
 getHouse()
 returns house
 
+getPop()
+returns population of that Caldean
+
 seqGenome()
 returns genome
 
 marriage()
 if eld and correct age, searches for du of correct age and sex
+if du,
 
 progeny()
 if married, creates new Caldean
@@ -46,6 +50,7 @@ public class Caldean{
   private Caldean spouse;
   private LinkedList<Locus> myGenes;
   private Random fate;
+  private Population myCity;
 
 //natural Caldean
 public Caldean(Caldean rex, Caldean is)
@@ -56,6 +61,7 @@ public Caldean(Caldean rex, Caldean is)
   female = fate.nextBoolean();
   myGenes = rex.mixGametes();
   elder = !family.hasEld();
+  myCity = rex.getPop();
 }
 
 //artificial Caldean
@@ -75,7 +81,7 @@ public void anotherYear()
   age++;
 
   if(lonely())
-    marriage(); 
+    marriage();
 
   if(spouse!=null && horny())
     baby();
@@ -103,6 +109,20 @@ public LinkedList<Locus> mixGametes()
 }
 
 
+//Find data for this, for now, everbody is getting married at 20
+private boolean lonely()
+{
+  if(spouse!=null||!family.hasEld())
+    return false;
+  else if(age>19)
+    return true;
+}
+
+public void marriage()
+{
+  spouse = myCity.datingScene(this);
+}
+
 
 public House getHouse()
 {
@@ -113,6 +133,11 @@ public int getRank()
   {
     return family.getRank();
   }
+
+public Population getPop()
+{
+  return myCity;
+}
 
 
 public LinkedList<Locus> getGenome()

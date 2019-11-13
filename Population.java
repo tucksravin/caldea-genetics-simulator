@@ -32,7 +32,14 @@ public Population()
   year = 0;
 }
 
-//manually adding all data from Kantrow 89, chance of surviving in a given year
+
+//stub, need to get other tools working first, for now, marry to oneself
+public Caldean datingScene(Caldean romeo)
+{
+  return romeo;
+}
+
+//manually adding all data from Kantrow '89, chance of surviving in a given year (out of 1000)
 public double lifeTables(boolean female,int age)
 {
   if(female)
