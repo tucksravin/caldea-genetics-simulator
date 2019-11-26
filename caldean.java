@@ -80,11 +80,14 @@ public void anotherYear()
 {
   age++;
 
-  if(lonely())
-    marriage();
+  if(elder)
+  {
+    if(lonely())
+      marriage();
 
-  if(spouse!=null && horny())
-    baby();
+    if(spouse!=null && horny())
+      progeny();
+  }
 
   if(mortality())
     die();
@@ -118,9 +121,12 @@ private boolean lonely()
     return true;
 }
 
+//sends to datingScene, which checks the population for matches.
+//right now datingScene is a stub, so just marries this back to itself.
 public void marriage()
 {
   spouse = myCity.datingScene(this);
+  family.succession(spouse);
 }
 
 

@@ -5,7 +5,7 @@ A gene represents a point in the genome that can have either an effect on
 fitness in the population, or just exist.
 
 for now, we are using a highly simplified model which assumes Mendelian genetics,
-that only effects survival fitness and is equally helpful or deleterious
+that only affects survival fitness and is equally helpful or deleterious
 throughout an individuals life.
 
 
