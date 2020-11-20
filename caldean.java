@@ -43,7 +43,7 @@ returns chance of death, given age
 
 public class Caldean{
 
-  private int age;
+  private int birthYear;
   private boolean elder;
   private boolean female;
   private House family;
@@ -55,9 +55,9 @@ public class Caldean{
 //natural Caldean
 public Caldean(Caldean rex, Caldean is)
 {
-  age = 0;
-  family = rex.getHouse();
   myCity = rex.getPop();
+  birthYear = myCity.getYear();
+  family = rex.getHouse();
   female = myCity.fate.nextBoolean();
   myGenes = rex.mixGametes();
   elder = !family.hasEld();
@@ -65,19 +65,9 @@ public Caldean(Caldean rex, Caldean is)
 }
 
 //artificial Caldean
-public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG)
-{
-  age = a;
-  elder = e;
-  female = f;
-  family = fam;
-  family.addMember(this);
-  myGenes = mG;
-}
-
 public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG, Population pop)
 {
-  age = a;
+  birthYear = a;
   elder = e;
   female = f;
   family = fam;
@@ -91,7 +81,6 @@ public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG, Pop
 //which are the things that this simulation cares about
 public void anotherYear()
 {
-  age++;
 
   if(elder)
   {
@@ -130,7 +119,7 @@ private boolean lonely()
 {
   if(spouse!=null||!family.hasEld())
     return false;
-  else if(age>19)
+  else if(age()>19)
     return true;
   else
     return false;
@@ -177,7 +166,7 @@ private boolean horny(){
 }
 
 private boolean mortality(){
-  double chanceOfDeath = myCity.lifeTables(female, age);
+  double chanceOfDeath = myCity.lifeTables(female, age());
   double theReaper = myCity.fate.nextDouble() * 1000;
 
   return theReaper > chanceOfDeath;
@@ -186,6 +175,7 @@ private boolean mortality(){
 //for testing
 public void arrangedMarriage(Caldean betrothed)
 {
+
   spouse = betrothed;
   family.succession(spouse);
   spouse.becomeIs(this);
@@ -196,6 +186,10 @@ public void becomeIs(Caldean rex){
   family = rex.getHouse();
 }
 
+public int age()
+{
+  return myCity.getYear()-birthYear;
+}
 
 
 
@@ -223,7 +217,7 @@ public String toString()
     output = output +"is ";
 
   output = output + "of House " + getRank() + " risen from "+ family.getInitialRank() + ".";
-  output = output + "\n They are " + age + " years old. \n \n";
+  output = output + "\n They are " + age() + " years old. \n \n";
   output = output + "Their genome is as follows: \n";
 
   Iterator<Locus> genome = myGenes.iterator();

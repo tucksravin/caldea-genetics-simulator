@@ -27,6 +27,11 @@ public void nextYear()
   year++;
 }
 
+public int getYear()
+{
+  return year;
+}
+
 public Population()
 {
   super();

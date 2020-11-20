@@ -34,9 +34,12 @@ class Test
       House San = new House(1, theCity);
       House Folin = new House(3, theCity);
 
-      Caldean Darin = new Caldean(25, true, false, San, DarinsGenes, theCity);
+      Caldean Darin = new Caldean(-25, true, false, San, DarinsGenes, theCity);
 
-      Caldean Colis =  new Caldean(23, false, true, Folin, ColisGenes, theCity);
+      System.out.println("\n made Darin" + San.toString());
+
+      Caldean Colis =  new Caldean(-23, false, true, Folin, ColisGenes, theCity);
+
 
       Darin.arrangedMarriage(Colis);
 
@@ -44,8 +47,20 @@ class Test
 
       San.baby();
 
-      Colis.die();
 
+    System.out.println("\n 1) " + San.toString());
+     theCity.nextYear();
+
+      System.out.println("\n  2)" + San.toString());
+
+      theCity.nextYear();
+     Colis.die();
+
+      System.out.println("\n  3)" + San.toString());
+
+      theCity.nextYear();
+
+      System.out.println("\n  4)" + San.toString());
 
 
       //System.out.println("\n" + one.toString());
@@ -55,7 +70,7 @@ class Test
       //System.out.println("\n" + hidden.toString());
       //System.out.println("\n" + Darin.toString());
       //System.out.println("\n" + Colis.toString());
-      System.out.println("\n" + San.toString());
+      //System.out.println("\n" + San.toString());
 
   }
 }

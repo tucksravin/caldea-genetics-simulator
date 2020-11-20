@@ -13,7 +13,6 @@ private Caldean rex;
 private Caldean is;
 private Caldean eld;
 private Caldean du;
-ArrayList<Caldean> theFolks;
 private Population theHousesOfCaldea;
 
 //constructor used at start of sim to build all houses, leads to
@@ -44,7 +43,6 @@ public boolean baby()
 
   else if(!hasDu()&&!hasEld()){
     eld = addition;
-    restructureFam();
     return true;
   }
 
@@ -57,14 +55,10 @@ public boolean baby()
 
 public void succession(Caldean newIs)
 {
-  if(hasEld()){
-    rex = eld;
-    eld = null;
-  }
-
+  if(rex==null)
+  {rex = eld;
+  eld = null;}
   is = newIs;
-
-  restructureFam();
 }
 
 public void removeDu()
@@ -125,18 +119,8 @@ public void aDeathInThe(Caldean deceased)
     else if(deceased==du)
         du = null;
 
-
-
-  restructureFam();
 }
 
-private void restructureFam(){
-  theFolks = new ArrayList<Caldean>();
-  theFolks.add(rex);
-  theFolks.add(is);
-  theFolks.add(eld);
-  theFolks.add(du);
-}
 
 //STUB, will generate a family of Caldeans for each house to start sim
 public ArrayList<Caldean> generateFamily()
@@ -151,7 +135,6 @@ public ArrayList<Caldean> generateFamily()
 public void setRex(Caldean a)
 {
   rex = a;
-  restructureFam();
 }
 
 public void addMember(Caldean a){
@@ -167,7 +150,6 @@ public void addMember(Caldean a){
 
 public String toString()
 {
-  Iterator<Caldean> senior = theFolks.iterator();
   String output = "This house is comprised of: \n";
 
   if(rex!=null)
