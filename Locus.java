@@ -14,7 +14,7 @@ public class Locus
   private boolean b;
   Gene g;
 
-  Locus(Gene whatAmI, boolean first, boolean second)
+  public Locus(Gene whatAmI, boolean first, boolean second)
   {
     g = whatAmI;
     a=first;
@@ -42,11 +42,10 @@ public class Locus
     }
 
 
-  public boolean gamete()
+  public boolean gamete(Population city)
   {
-    Random fate = new Random();
 
-    if(fate.nextBoolean())
+    if(city.fate.nextBoolean())
       return a;
     else
       return b;

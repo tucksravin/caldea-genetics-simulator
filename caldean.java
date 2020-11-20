@@ -55,13 +55,13 @@ public class Caldean{
 //natural Caldean
 public Caldean(Caldean rex, Caldean is)
 {
-  fate = new Random();
   age = 0;
   family = rex.getHouse();
-  female = fate.nextBoolean();
+  myCity = rex.getPop();
+  female = myCity.fate.nextBoolean();
   myGenes = rex.mixGametes();
   elder = !family.hasEld();
-  myCity = rex.getPop();
+
 }
 
 //artificial Caldean
@@ -71,8 +71,21 @@ public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG)
   elder = e;
   female = f;
   family = fam;
+  family.addMember(this);
   myGenes = mG;
 }
+
+public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG, Population pop)
+{
+  age = a;
+  elder = e;
+  female = f;
+  family = fam;
+  family.addMember(this);
+  myGenes = mG;
+  myCity = pop;
+}
+
 
 //advances year, checks if the caldean will die, will get married, or have children
 //which are the things that this simulation cares about
@@ -86,7 +99,7 @@ public void anotherYear()
       marriage();
 
     if(spouse!=null && horny())
-      family.baby(new Caldean(rex, is));
+      family.baby();
   }
 
   if(mortality())
@@ -105,7 +118,7 @@ public LinkedList<Locus> mixGametes()
   while(rexStrand.hasNext())
     {
       Locus curr = rexStrand.next();
-      united.add(new Locus(curr.getGene(), curr.gamete(), isStrand.next().gamete()));
+      united.add(new Locus(curr.getGene(), curr.gamete(myCity), isStrand.next().gamete(myCity)));
     }
 
   return united;
@@ -119,6 +132,8 @@ private boolean lonely()
     return false;
   else if(age>19)
     return true;
+  else
+    return false;
 }
 
 //sends to datingScene, which checks the population for matches.
@@ -155,6 +170,8 @@ public void die(){
   family.aDeathInThe(this);
 }
 
+
+//STUB: haven't implemented
 private boolean horny(){
   return false;
 }
@@ -170,6 +187,13 @@ private boolean mortality(){
 public void arrangedMarriage(Caldean betrothed)
 {
   spouse = betrothed;
+  family.succession(spouse);
+  spouse.becomeIs(this);
+}
+
+public void becomeIs(Caldean rex){
+  spouse = rex;
+  family = rex.getHouse();
 }
 
 
@@ -198,8 +222,9 @@ public String toString()
   else
     output = output +"is ";
 
-  output = output + "of House " + getRank() + " risen from "+ family.getInitialRank();
-  output = output + ". Their genome is as follows: \n";
+  output = output + "of House " + getRank() + " risen from "+ family.getInitialRank() + ".";
+  output = output + "\n They are " + age + " years old. \n \n";
+  output = output + "Their genome is as follows: \n";
 
   Iterator<Locus> genome = myGenes.iterator();
   int i = 1;

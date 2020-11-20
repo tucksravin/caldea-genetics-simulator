@@ -35,7 +35,7 @@ public Population()
 }
 
 
-//stub, need to get other tools working first, for now, marry to oneself
+//STUB, need to get other tools working first, for now, marry to oneself
 public Caldean datingScene(Caldean romeo)
 {
   return romeo;

@@ -13,19 +13,16 @@ private Caldean rex;
 private Caldean is;
 private Caldean eld;
 private Caldean du;
+ArrayList<Caldean> theFolks;
 private Population theHousesOfCaldea;
 
 //constructor used at start of sim to build all houses, leads to
 public House(Population soFar)
 {
+
   theHousesOfCaldea = soFar;
   rankInit = soFar.size()+1;
-  theFolks = generateFamily();
-  Iterator<Caldean> senior = theFolks.iterator();
-  rex = senior.next();
-  is = senior.next();
-  eld = senior.next();
-  du = senior.next();
+  generateFamily();
   soFar.add(this);
 }
 
@@ -37,20 +34,37 @@ public House(int rI, Population houses)
   rankInit=rI;
 }
 
-public void baby(Caldean addition)
+public boolean baby()
 {
-  if(hasEld())
-    du = addition;
+  Caldean addition = new Caldean(rex, is);
 
-  else
+  if(hasDu()){
+    return false;
+  }
+
+  else if(!hasDu()&&!hasEld()){
     eld = addition;
+    restructureFam();
+    return true;
+  }
+
+  else{
+    du = addition;
+    return true;
+  }
+
 }
 
 public void succession(Caldean newIs)
 {
-  rex = eld;
+  if(hasEld()){
+    rex = eld;
+    eld = null;
+  }
+
   is = newIs;
-  eld = null;
+
+  restructureFam();
 }
 
 public void removeDu()
@@ -67,6 +81,22 @@ public boolean hasEld()
   return eld!=null;
 }
 
+public Caldean getRex(){
+  return rex;
+}
+
+public Caldean getIs(){
+  return is;
+}
+
+public Caldean getEld(){
+  return eld;
+}
+
+public Caldean getDu(){
+  return du;
+}
+
 //gives current rank
 public int getRank()
 {
@@ -80,30 +110,32 @@ public int getInitialRank()
 
 public void aDeathInThe(Caldean deceased)
 {
-  int position = theFolks.indexOf(deceased);
-  theFolks.remove(position);
-  if(positon==0)
-  {
-    rex=eld;
-    is=null;
-    eld=null;
-    theFolks.remove(is);
-  }
-  else if{position==2}
-  {
-    eld=du;
-    du=null;
-  }
+  if(deceased==rex)
+    {
+      rex = null;
+      is = null;
+    }
+
+    else if(deceased==is)
+        is = null;
+
+    else if(deceased==eld)
+        eld = null;
+
+    else if(deceased==du)
+        du = null;
+
+
 
   restructureFam();
 }
 
 private void restructureFam(){
-  theFam = new ArrayList<Caldean>();
-  theFam.add(rex);
-  theFam.add(is);
-  theFam.add(eld);
-  theFam.add(du);
+  theFolks = new ArrayList<Caldean>();
+  theFolks.add(rex);
+  theFolks.add(is);
+  theFolks.add(eld);
+  theFolks.add(du);
 }
 
 //STUB, will generate a family of Caldeans for each house to start sim
@@ -114,5 +146,45 @@ public ArrayList<Caldean> generateFamily()
 }
 
 
+//manual methods for Testing
 
+public void setRex(Caldean a)
+{
+  rex = a;
+  restructureFam();
+}
+
+public void addMember(Caldean a){
+  if(rex==null)
+    rex = a;
+  else if (is==null)
+    is = a;
+  else if (eld==null)
+    eld = a;
+  else
+    du = a;
+}
+
+public String toString()
+{
+  Iterator<Caldean> senior = theFolks.iterator();
+  String output = "This house is comprised of: \n";
+
+  if(rex!=null)
+  output = output + rex.toString() + "\n";
+
+  if(is!=null)
+  output = output + is.toString() + "\n";
+
+  if(eld!=null)
+  output = output + eld.toString() + "\n";
+
+  if(du!=null)
+  output = output + du.toString() + "\n";
+
+  //while(senior.hasNext())
+  //  output = output + "\n" + senior.next().toString();
+
+return output;
+}
 }
