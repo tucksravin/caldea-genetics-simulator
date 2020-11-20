@@ -36,7 +36,6 @@ class Test
 
       Caldean Darin = new Caldean(-25, true, false, San, DarinsGenes, theCity);
 
-      System.out.println("\n made Darin" + San.toString());
 
       Caldean Colis =  new Caldean(-23, false, true, Folin, ColisGenes, theCity);
 
@@ -47,20 +46,36 @@ class Test
 
       San.baby();
 
+      boolean weAreYetLiving = true;
 
-    System.out.println("\n 1) " + San.toString());
-     theCity.nextYear();
 
-      System.out.println("\n  2)" + San.toString());
-
-      theCity.nextYear();
-     Colis.die();
-
-      System.out.println("\n  3)" + San.toString());
+    while(weAreYetLiving)
+    {
 
       theCity.nextYear();
 
-      System.out.println("\n  4)" + San.toString());
+      if(San.getRex()==null){
+        System.out.println("Darin died at ");
+        System.out.print(theCity.getYear()+25);
+        weAreYetLiving = false;
+      }
+
+      if(San.getIs()==null){
+        System.out.println("Colis died at ");
+        System.out.print(theCity.getYear()+23);
+        weAreYetLiving = false;
+      }
+
+      if(San.getEld()==null){
+        System.out.println("San Eld died at "+theCity.getYear());
+        weAreYetLiving = false;
+      }
+
+      if(San.getDu()==null){
+        System.out.println("San Du died at "+theCity.getYear());
+        weAreYetLiving = false;
+      }
+    }
 
 
       //System.out.println("\n" + one.toString());

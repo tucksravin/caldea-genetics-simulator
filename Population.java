@@ -21,10 +21,22 @@ as sharp as would be preferable, and each period has been averaged out to get ou
 percentage life expectancy.
 */
 
+public Population()
+{
+  super();
+  year = 0;
+  fate = new Random();
+}
+
 public void nextYear()
 {
 
   year++;
+  Iterator<House> houses = this.iterator();
+
+while(houses.hasNext())
+  if(houses.next().timePasses())
+    houses.remove();
 }
 
 public int getYear()
@@ -32,12 +44,7 @@ public int getYear()
   return year;
 }
 
-public Population()
-{
-  super();
-  year = 0;
-  fate = new Random();
-}
+
 
 
 //STUB, need to get other tools working first, for now, marry to oneself

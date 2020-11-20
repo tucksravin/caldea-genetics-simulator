@@ -81,6 +81,7 @@ public Caldean(int a, boolean e, boolean f, House fam, LinkedList<Locus> mG, Pop
 //which are the things that this simulation cares about
 public void anotherYear()
 {
+  //System.out.println("anotherYear run");
 
   if(elder)
   {
@@ -218,6 +219,7 @@ public String toString()
 
   output = output + "of House " + getRank() + " risen from "+ family.getInitialRank() + ".";
   output = output + "\n They are " + age() + " years old. \n \n";
+  /*
   output = output + "Their genome is as follows: \n";
 
   Iterator<Locus> genome = myGenes.iterator();
@@ -227,6 +229,7 @@ public String toString()
     output = output + "Gene "+ i + "\n" + genome.next().toString() +"\n \n";
     i++;
   }
+  */
 
   return output;
 }

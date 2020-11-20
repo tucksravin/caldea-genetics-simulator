@@ -53,6 +53,33 @@ public boolean baby()
 
 }
 
+public boolean timePasses()
+{
+  boolean theEnd = true;
+  if(rex!=null){
+    rex.anotherYear();
+    theEnd = false;
+  }
+
+
+  if(is!=null){
+    is.anotherYear();
+    theEnd = false;
+  }
+
+  if(eld!=null){
+    eld.anotherYear();
+    theEnd = false;
+  }
+
+  if(du!=null){
+    du.anotherYear();
+    theEnd = false;
+  }
+
+  return theEnd;
+}
+
 public void succession(Caldean newIs)
 {
   if(rex==null)
