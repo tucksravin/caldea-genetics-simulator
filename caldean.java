@@ -34,8 +34,8 @@ marriage()
 if eld and correct age, searches for du of correct age and sex
 if du,
 
-progeny()
-if married, creates new Caldean
+mortality()
+returns chance of death, given age
 
 
 
@@ -86,7 +86,7 @@ public void anotherYear()
       marriage();
 
     if(spouse!=null && horny())
-      progeny();
+      family.baby(new Caldean(rex, is));
   }
 
   if(mortality())
@@ -151,7 +151,22 @@ public LinkedList<Locus> getGenome()
   return myGenes;
 }
 
-//just for testing
+public void die(){
+  family.aDeathInThe(this);
+}
+
+private boolean horny(){
+  return false;
+}
+
+private boolean mortality(){
+  double chanceOfDeath = myCity.lifeTables(female, age);
+  double theReaper = myCity.fate.nextDouble() * 1000;
+
+  return theReaper > chanceOfDeath;
+}
+
+//for testing
 public void arrangedMarriage(Caldean betrothed)
 {
   spouse = betrothed;

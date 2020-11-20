@@ -49,13 +49,17 @@ public void baby(Caldean addition)
 public void succession(Caldean newIs)
 {
   rex = eld;
-  is = addition;
+  is = newIs;
   eld = null;
 }
 
 public void removeDu()
 {
   du = null;
+}
+
+public boolean hasDu(){
+  return du!=null;
 }
 
 public boolean hasEld()
@@ -72,6 +76,34 @@ public int getRank()
 public int getInitialRank()
 {
   return rankInit;
+}
+
+public void aDeathInThe(Caldean deceased)
+{
+  int position = theFolks.indexOf(deceased);
+  theFolks.remove(position);
+  if(positon==0)
+  {
+    rex=eld;
+    is=null;
+    eld=null;
+    theFolks.remove(is);
+  }
+  else if{position==2}
+  {
+    eld=du;
+    du=null;
+  }
+
+  restructureFam();
+}
+
+private void restructureFam(){
+  theFam = new ArrayList<Caldean>();
+  theFam.add(rex);
+  theFam.add(is);
+  theFam.add(eld);
+  theFam.add(du);
 }
 
 //STUB, will generate a family of Caldeans for each house to start sim

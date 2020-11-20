@@ -26,6 +26,9 @@ public class Locus
     return g;
   }
 
+//1: homozygous for common
+//2: homozygous for rare
+//3: Heterozygous
   public int genotype()
     {
       if(a&&b)
@@ -84,5 +87,13 @@ public class Locus
       return output;
   }
 
+  public static void main(String[] args){
+    Gene bcrAbl = new Gene(66, 72, 81, 2);
+    System.out.println(bcrAbl.toString());
+
+    Locus cml = new Locus(bcrAbl, false, false);
+
+    System.out.println(cml.toString());
+  }
 
 }

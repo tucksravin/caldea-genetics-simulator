@@ -33,11 +33,12 @@ private int fitHomTwo;
 
 //constructs gene when given all variables
 //(the macrocreation of a Gene is done in the population constructor)
-public Gene( int homOne, int het, int homTwo, int originalRarity)
+public Gene( int homOne, int het, int homTwo, int oRarity)
   {
     fitHet = het;
     fitHomOne = homOne;
     fitHomTwo = homTwo;
+    originalRarity = oRarity;
   }
 
 
@@ -68,5 +69,9 @@ public String toString()
 
 }
 
-
+public static void main(String[] args){
+  Gene bcrAbl = new Gene(66, 72, 81,10);
+  System.out.println("running");
+  System.out.println(bcrAbl.toString());
+}
 }

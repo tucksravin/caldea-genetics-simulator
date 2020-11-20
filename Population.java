@@ -8,6 +8,7 @@ through the years and and can return statistics about different alleles.
 public class Population extends LinkedList<House>{
 
 private int year;
+Random fate;
 
 /*
 both life tables are taken from Louis Kantrow's paper 1989,
@@ -30,6 +31,7 @@ public Population()
 {
   super();
   year = 0;
+  fate = new Random();
 }
 
 
