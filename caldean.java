@@ -49,7 +49,6 @@ public class Caldean{
   private House family;
   private Caldean spouse;
   private LinkedList<Locus> myGenes;
-  private Random fate;
   private Population myCity;
 
 //natural Caldean
@@ -118,9 +117,9 @@ public LinkedList<Locus> mixGametes()
 //Find data for this, for now, everbody is getting married at 20
 private boolean lonely()
 {
-  if(spouse!=null||!family.hasEld())
+  if(spouse!=null)
     return false;
-  else if(age()>19)
+  else if(getAge()>19)
     return true;
   else
     return false;
@@ -131,7 +130,11 @@ private boolean lonely()
 public void marriage()
 {
   spouse = myCity.datingScene(this);
+  if(spouse!=null){
+  myCity.takenOrDead(spouse);
   family.succession(spouse);
+}
+
 }
 
 
@@ -148,6 +151,10 @@ public int getRank()
 public Population getPop()
 {
   return myCity;
+}
+
+public boolean isFemale(){
+  return female;
 }
 
 
@@ -167,7 +174,7 @@ private boolean horny(){
 }
 
 private boolean mortality(){
-  double chanceOfDeath = myCity.lifeTables(female, age());
+  double chanceOfDeath = myCity.lifeTables(female, getAge());
   double theReaper = myCity.fate.nextDouble() * 1000;
 
   return theReaper > chanceOfDeath;
@@ -178,16 +185,18 @@ public void arrangedMarriage(Caldean betrothed)
 {
 
   spouse = betrothed;
+  myCity.takenOrDead(spouse);
   family.succession(spouse);
   spouse.becomeIs(this);
 }
 
 public void becomeIs(Caldean rex){
   spouse = rex;
+  myCity.takenOrDead(this);
   family = rex.getHouse();
 }
 
-public int age()
+public int getAge()
 {
   return myCity.getYear()-birthYear;
 }
@@ -218,7 +227,7 @@ public String toString()
     output = output +"is ";
 
   output = output + "of House " + getRank() + " risen from "+ family.getInitialRank() + ".";
-  output = output + "\n They are " + age() + " years old. \n \n";
+  output = output + "\n They are " + getAge() + " years old. \n \n";
   /*
   output = output + "Their genome is as follows: \n";
 

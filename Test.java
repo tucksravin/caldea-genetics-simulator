@@ -9,7 +9,7 @@ class Test
 
   public static void main(String[] args)
   {
-      Gene hidden = new Gene (100, 110, 50, 30);
+      Gene hidden = new Gene(100, 110, 50, 30);
 
       Gene uninteresting =  new Gene(100,100,100, 10);
 
@@ -34,47 +34,31 @@ class Test
       House San = new House(1, theCity);
       House Folin = new House(3, theCity);
 
-      Caldean Darin = new Caldean(-25, true, false, San, DarinsGenes, theCity);
+      Caldean Darin = new Caldean(18, true, false, San, DarinsGenes, theCity);
 
 
-      Caldean Colis =  new Caldean(-23, false, true, Folin, ColisGenes, theCity);
+      Caldean Colis =  new Caldean(16, false, true, Folin, ColisGenes, theCity);
 
 
-      Darin.arrangedMarriage(Colis);
-
-      San.baby();
-
-      San.baby();
-
-      boolean weAreYetLiving = true;
+      boolean married = false;
 
 
-    while(weAreYetLiving)
+    while(!married)
     {
 
       theCity.nextYear();
 
-      if(San.getRex()==null){
-        System.out.println("Darin died at ");
-        System.out.print(theCity.getYear()+25);
-        weAreYetLiving = false;
+
+
+      if(San.getIs()!=null){
+        int cAge = theCity.getYear()+23;
+        System.out.println("Colis got married at "+ cAge);
+        break;
       }
 
-      if(San.getIs()==null){
-        System.out.println("Colis died at ");
-        System.out.print(theCity.getYear()+23);
-        weAreYetLiving = false;
-      }
-
-      if(San.getEld()==null){
-        System.out.println("San Eld died at "+theCity.getYear());
-        weAreYetLiving = false;
-      }
-
-      if(San.getDu()==null){
-        System.out.println("San Du died at "+theCity.getYear());
-        weAreYetLiving = false;
-      }
+      if(theCity.getYear()>100){
+        System.out.println("Reached year 100. \n");
+        break;}
     }
 
 

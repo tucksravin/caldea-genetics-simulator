@@ -13,29 +13,34 @@ private Caldean rex;
 private Caldean is;
 private Caldean eld;
 private Caldean du;
-private Population theHousesOfCaldea;
+private LinkedList<Caldean> theFam;
+private Population theCity;
 
 //constructor used at start of sim to build all houses, leads to
 public House(Population soFar)
 {
 
-  theHousesOfCaldea = soFar;
-  rankInit = soFar.size()+1;
+  theCity = soFar;
+  rankInit = soFar.getHouses().size()+1;
   generateFamily();
-  soFar.add(this);
+  soFar.getHouses().add(this);
+  theFam = new LinkedList<Caldean>();
 }
 
 //house
-public House(int rI, Population houses)
+public House(int rI, Population city)
 {
-  theHousesOfCaldea = houses;
-  theHousesOfCaldea.add(this);
+  theCity = city;
+  theCity.getHouses().add(this);
   rankInit=rI;
+  theFam = new LinkedList<Caldean>();
 }
 
 public boolean baby()
 {
   Caldean addition = new Caldean(rex, is);
+
+  theFam.add(addition);
 
   if(hasDu()){
     return false;
@@ -86,10 +91,12 @@ public void succession(Caldean newIs)
   {rex = eld;
   eld = null;}
   is = newIs;
+  theFam.add(is);
 }
 
 public void removeDu()
 {
+  theFam.remove(du);
   du = null;
 }
 
@@ -121,7 +128,7 @@ public Caldean getDu(){
 //gives current rank
 public int getRank()
 {
-  return theHousesOfCaldea.indexOf(this)+1;
+  return theCity.getHouses().indexOf(this)+1;
 }
 
 public int getInitialRank()
@@ -133,26 +140,39 @@ public void aDeathInThe(Caldean deceased)
 {
   if(deceased==rex)
     {
+      theFam.remove(rex);
+      theFam.remove(is);
       rex = null;
+      is = null;
+
+    }
+
+    else if(deceased==is){
+      theFam.remove(is);
       is = null;
     }
 
-    else if(deceased==is)
-        is = null;
 
-    else if(deceased==eld)
-        eld = null;
+    else if(deceased==eld){
+          theFam.remove(eld);
+          eld = du;
+          du = null;
+        }
 
-    else if(deceased==du)
+    else if(deceased==du){
+        theCity.takenOrDead(deceased);
+        theFam.remove(du);
         du = null;
+      }
 
 }
 
 
 //STUB, will generate a family of Caldeans for each house to start sim
-public ArrayList<Caldean> generateFamily()
+public LinkedList<Caldean> generateFamily()
 {
-  ArrayList<Caldean> fam = new ArrayList<Caldean>();
+  LinkedList<Caldean> fam = new LinkedList<Caldean>();
+  theFam = fam;
   return fam;
 }
 
@@ -165,6 +185,8 @@ public void setRex(Caldean a)
 }
 
 public void addMember(Caldean a){
+  theFam.add(a);
+
   if(rex==null)
     rex = a;
   else if (is==null)

@@ -5,9 +5,14 @@ A Population contains a list of houses and has methods that cycle
 through the years and and can return statistics about different alleles.
 */
 
-public class Population extends LinkedList<House>{
+public class Population{
 
 private int year;
+private ArrayList<Caldean> eligibleDuas;
+private ArrayList<Caldean> eligibleDuises;
+private LinkedList<House> theHouses;
+double rankWeightSum;
+double ageWeightSum;
 Random fate;
 
 /*
@@ -26,13 +31,16 @@ public Population()
   super();
   year = 0;
   fate = new Random();
+  eligibleDuas = new ArrayList<Caldean>();
+  eligibleDuises =  new ArrayList<Caldean>();
+  theHouses = new LinkedList<House>();
 }
 
 public void nextYear()
 {
 
   year++;
-  Iterator<House> houses = this.iterator();
+  Iterator<House> houses = theHouses.iterator();
 
 while(houses.hasNext())
   if(houses.next().timePasses())
@@ -44,13 +52,92 @@ public int getYear()
   return year;
 }
 
-
-
-
-//STUB, need to get other tools working first, for now, marry to oneself
-public Caldean datingScene(Caldean romeo)
+public LinkedList<House> getHouses()
 {
-  return romeo;
+  return theHouses;
+}
+
+//adds dus to their respective lists
+public void comingOfAge(Caldean du){
+  if(du.isFemale())
+    eligibleDuises.add(du);
+
+  else
+    eligibleDuas.add(du);
+}
+
+//removes dus from their respective lists
+public void takenOrDead(Caldean du)
+{
+  if(du.isFemale())
+    eligibleDuas.remove(du);
+
+  else
+    eligibleDuises.remove(du);
+
+}
+
+
+
+//builds an array of compatability scores for each eligible du
+//then randomly assigns a partner, using compatability scores
+//to find the probabilities.
+public Caldean datingScene(Caldean theBachelor){
+
+  ArrayList<Double> compChart = new ArrayList();
+
+  ArrayList<Caldean> theSuitors;
+  if(theBachelor.isFemale())
+    theSuitors = eligibleDuises;
+  else
+    theSuitors = eligibleDuas;
+
+  Iterator<Caldean> paradise = theSuitors.iterator();
+
+  rankWeightSum= 0;
+  ageWeightSum = 0;
+
+  while(paradise.hasNext())
+  {
+    howManyFishInThePond(theBachelor, paradise.next());
+  }
+
+  paradise = theSuitors.iterator();
+
+  while(paradise.hasNext()){
+    compChart.add(butAreYouAGemini(theBachelor, paradise.next()));
+  }
+
+  double myDesire = fate.nextDouble();
+  double myDuty = 0;
+  int andTheLuckyWinnerIs = 0;
+
+
+  for(int i = 0; myDuty>myDesire; i++){
+    myDuty = myDuty + compChart.get(i);
+    andTheLuckyWinnerIs = i;
+  }
+
+  return theSuitors.get(andTheLuckyWinnerIs);
+}
+
+//
+private void howManyFishInThePond(Caldean theBachelor, Caldean aSuitor){
+  double likenessInDignity = Math.exp(Math.abs(theBachelor.getHouse().getRank()-aSuitor.getHouse().getRank()));
+  double ageIsJustANumber = Math.exp(Math.abs(theBachelor.getAge()-aSuitor.getAge()));
+
+  rankWeightSum = rankWeightSum + likenessInDignity;
+  ageWeightSum = ageWeightSum + ageIsJustANumber;
+
+}
+
+private double butAreYouAGemini(Caldean theBachelor, Caldean aSuitor){
+  double likenessInDignity = Math.exp(0-Math.abs(theBachelor.getHouse().getRank()-aSuitor.getHouse().getRank()));
+  double ageIsJustANumber = Math.exp(0-Math.abs(theBachelor.getAge()-aSuitor.getAge()));
+
+  likenessInDignity = likenessInDignity/rankWeightSum*0.5;
+  ageIsJustANumber = ageIsJustANumber/ageWeightSum*0.5;
+  return likenessInDignity + ageIsJustANumber;
 }
 
 //manually adding all data from Kantrow '89, chance of surviving in a given year (out of 1000)
