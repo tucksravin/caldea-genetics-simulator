@@ -90,6 +90,12 @@ public void anotherYear()
     if(spouse!=null && horny())
       family.baby();
   }
+  else
+  {
+    //System.out.println(this.getAge());
+    if(this.getAge()==19)
+      myCity.comingOfAge(this);
+  }
 
   if(mortality())
     die();
@@ -130,12 +136,16 @@ private boolean lonely()
 public void marriage()
 {
   spouse = myCity.datingScene(this);
-  if(spouse!=null){
-  myCity.takenOrDead(spouse);
-  family.succession(spouse);
+
+  if(spouse!=null)
+  {
+    myCity.takenOrDead(spouse);
+    family.succession(spouse);
+    spouse.becomeIs(this);
+  }
 }
 
-}
+
 
 
 public House getHouse()
@@ -164,6 +174,7 @@ public LinkedList<Locus> getGenome()
 }
 
 public void die(){
+  System.out.println(this.toString() + " They have died.");
   family.aDeathInThe(this);
 }
 

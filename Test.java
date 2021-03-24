@@ -29,15 +29,15 @@ class Test
       ColisGenes.add(three);
       ColisGenes.add(four);
 
-      Population theCity = new Population();
+      Population theCity = new Population(4);
 
       House San = new House(1, theCity);
       House Folin = new House(3, theCity);
 
-      Caldean Darin = new Caldean(18, true, false, San, DarinsGenes, theCity);
+      Caldean Darin = new Caldean(0, true, false, San, DarinsGenes, theCity);
 
 
-      Caldean Colis =  new Caldean(16, false, true, Folin, ColisGenes, theCity);
+      Caldean Colis =  new Caldean(2, false, true, Folin, ColisGenes, theCity);
 
 
       boolean married = false;
@@ -51,8 +51,9 @@ class Test
 
 
       if(San.getIs()!=null){
-        int cAge = theCity.getYear()+23;
+        int cAge = Colis.getAge();
         System.out.println("Colis got married at "+ cAge);
+        System.out.println(Colis.toString());
         break;
       }
 

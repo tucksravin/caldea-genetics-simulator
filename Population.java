@@ -28,8 +28,16 @@ percentage life expectancy.
 
 public Population()
 {
-  super();
   year = 0;
+  fate = new Random();
+  eligibleDuas = new ArrayList<Caldean>();
+  eligibleDuises =  new ArrayList<Caldean>();
+  theHouses = new LinkedList<House>();
+}
+
+public Population(int y)
+{
+  year = y;
   fate = new Random();
   eligibleDuas = new ArrayList<Caldean>();
   eligibleDuises =  new ArrayList<Caldean>();
@@ -60,10 +68,13 @@ public LinkedList<House> getHouses()
 //adds dus to their respective lists
 public void comingOfAge(Caldean du){
   if(du.isFemale())
-    eligibleDuises.add(du);
+    eligibleDuas.add(du);
 
   else
-    eligibleDuas.add(du);
+    eligibleDuises.add(du);
+
+    System.out.println("coming of age");
+    System.out.println(eligibleDuas.size());
 }
 
 //removes dus from their respective lists
@@ -92,6 +103,10 @@ public Caldean datingScene(Caldean theBachelor){
   else
     theSuitors = eligibleDuas;
 
+  if(theSuitors.size()!=0){
+
+  System.out.print("courting");
+
   Iterator<Caldean> paradise = theSuitors.iterator();
 
   rankWeightSum= 0;
@@ -119,6 +134,9 @@ public Caldean datingScene(Caldean theBachelor){
   }
 
   return theSuitors.get(andTheLuckyWinnerIs);
+}
+else
+  return null;
 }
 
 //
