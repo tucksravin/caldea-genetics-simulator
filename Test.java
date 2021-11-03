@@ -32,6 +32,7 @@ class Test
       Population theCity = new Population(4);
 
       House San = new House(1, theCity);
+      House Cras = new House(2, theCity);
       House Folin = new House(3, theCity);
 
       Caldean Darin = new Caldean(0, true, false, San, DarinsGenes, theCity);
@@ -39,23 +40,27 @@ class Test
 
       Caldean Colis =  new Caldean(2, false, true, Folin, ColisGenes, theCity);
 
+      Caldean Polis =  new Caldean(2, false, true, Cras, ColisGenes, theCity);
 
       boolean married = false;
+
+      System.out.println(San.toString());
 
 
     while(!married)
     {
 
       theCity.nextYear();
+      System.out.println(theCity.getYear());
+      System.out.println("San");
+      System.out.println(San.toString());
+      System.out.println("Cras");
+      System.out.println(Cras.toString());
+      System.out.println("Folin");
+      System.out.println(Folin.toString());
 
 
 
-      if(San.getIs()!=null){
-        int cAge = Colis.getAge();
-        System.out.println("Colis got married at "+ cAge);
-        System.out.println(Colis.toString());
-        break;
-      }
 
       if(theCity.getYear()>100){
         System.out.println("Reached year 100. \n");
